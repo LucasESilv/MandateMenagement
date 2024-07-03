@@ -1,0 +1,97 @@
+@import "../../../styles/variables.scss";
+
+main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form-section {
+    flex-grow: 0.3;
+    padding: 0 2.2rem;
+
+    .button-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 30px;
+
+      .divider {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        font-size: 0.87rem;
+        color: $gray-bg;
+        font-weight: 400;
+        text-transform: uppercase;
+
+        mat-divider {
+          flex: 1;
+          height: 1px;
+          background-color: $gray-bg;
+          flex-grow: 1;
+        }
+
+        span {
+          margin: 0 10px;
+          white-space: nowrap;
+        }
+      }
+
+      button {
+        width: 100%;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        border: none;
+        background-color: transparent;
+        padding: 21px 24px;
+        cursor: pointer;
+
+        &.bnt-primary {
+          background-color: $primary-color;
+          box-shadow: 0px 8px 12px rgba(64, 147, 255, 0.2);
+        }
+
+        &.bnt-secondary {
+          border: 1px solid $primary-color;
+          color: $primary-color;
+        }
+      }
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 2.8rem;
+    }
+
+    .bezerros-coat-of-arms {
+      width: 10rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .main-section {
+    gap: 2rem;
+
+    flex-grow: 1;
+    background-color: $gray-bg;
+
+    .diogo-lemos-logo {
+      width: 30rem;
+    }
+  }
+}
