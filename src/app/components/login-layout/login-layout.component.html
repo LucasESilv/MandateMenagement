@@ -6,13 +6,13 @@
 
     </ng-content>
     <div class="button-wrapper">
-      <button mat-button class="bnt-primary">{{ primaryBtnText }}</button>
+      <button mat-button class="bnt-primary" (click)="submit()" [disabled]="disablePrimaryBtn">{{ primaryBtnText }}</button>
       <div class="divider">
         <mat-divider></mat-divider>
         <span>ou</span>
         <mat-divider></mat-divider>
       </div>
-      <button mat-button class="bnt-secondary">{{ secondaryBtnText }}</button>
+      <button mat-button class="bnt-secondary" (click)="navigate()">{{ secondaryBtnText }}</button>
     </div>
   </section>
   <section class="main-section">
