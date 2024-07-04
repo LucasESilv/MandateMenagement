@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { LoginLayoutComponent } from "../../login-layout/login-layout.component";
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { PrimaryInputComponent } from '../../primary-input/primary-input.component';
+import { MatIcon } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-login',
@@ -11,10 +14,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   imports: [
     LoginLayoutComponent,
     MatFormFieldModule,
+    PrimaryInputComponent,
+    ReactiveFormsModule,
+    MatIcon
   ]
 })
 export class LoginComponent {
-  loginForm!: FormGroup;
+  loginForm: FormGroup;
 
   constructor(){
     this.loginForm = new FormGroup({

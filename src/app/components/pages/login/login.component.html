@@ -3,7 +3,22 @@
   primaryBtnText="Acessar a conta"
   secondaryBtnText="Cadastro"
 >
-  <form [[formGroup]="loginForm"]>
-
+  <form [formGroup]="loginForm">
+    <app-primary-input
+      formControlName="email"
+      type="email"
+      label="email"
+      placeholder="diogo@gmail.com"
+    >
+      <mat-icon class="custom-icon">email</mat-icon>
+    </app-primary-input>
+    <app-primary-input
+      formControlName="password"
+      type="password"
+      label="password"
+    >
+      <mat-icon class="custom-icon">lock</mat-icon>
+    </app-primary-input>
+    <span>Esqueceu a senha?</span>
   </form>
 </app-login-layout>

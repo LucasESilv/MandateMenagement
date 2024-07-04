@@ -1,7 +1,7 @@
 import {
   DOCUMENT,
   isPlatformBrowser
-} from "./chunk-W7HTPQZ6.js";
+} from "./chunk-WZARJGKN.js";
 import {
   ANIMATION_MODULE_TYPE,
   APP_ID,
@@ -75,7 +75,7 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate1,
   ɵɵviewQuery
-} from "./chunk-5QFL5AZN.js";
+} from "./chunk-AKAYTG33.js";
 
 // node_modules/@angular/cdk/fesm2022/coercion.mjs
 function coerceBooleanProperty(value) {
@@ -154,6 +154,50 @@ var PlatformModule = _PlatformModule;
     args: [{}]
   }], null, null);
 })();
+var supportedInputTypes;
+var candidateInputTypes = [
+  // `color` must come first. Chrome 56 shows a warning if we change the type to `color` after
+  // first changing it to something else:
+  // The specified value "" does not conform to the required format.
+  // The format is "#rrggbb" where rr, gg, bb are two-digit hexadecimal numbers.
+  "color",
+  "button",
+  "checkbox",
+  "date",
+  "datetime-local",
+  "email",
+  "file",
+  "hidden",
+  "image",
+  "month",
+  "number",
+  "password",
+  "radio",
+  "range",
+  "reset",
+  "search",
+  "submit",
+  "tel",
+  "text",
+  "time",
+  "url",
+  "week"
+];
+function getSupportedInputTypes() {
+  if (supportedInputTypes) {
+    return supportedInputTypes;
+  }
+  if (typeof document !== "object" || !document) {
+    supportedInputTypes = new Set(candidateInputTypes);
+    return supportedInputTypes;
+  }
+  let featureTestInput = document.createElement("input");
+  supportedInputTypes = new Set(candidateInputTypes.filter((value) => {
+    featureTestInput.setAttribute("type", value);
+    return featureTestInput.type === value;
+  }));
+  return supportedInputTypes;
+}
 var supportsPassiveEvents;
 function supportsPassiveEventListeners() {
   if (supportsPassiveEvents == null && typeof window !== "undefined") {
@@ -2738,6 +2782,28 @@ function _checkCdkVersionMatch() {
     console.warn("The Angular Material version (" + VERSION2.full + ") does not match the Angular CDK version (" + VERSION.full + ").\nPlease ensure the versions of these two packages exactly match.");
   }
 }
+var _ErrorStateTracker = class {
+  constructor(_defaultMatcher, ngControl, _parentFormGroup, _parentForm, _stateChanges) {
+    this._defaultMatcher = _defaultMatcher;
+    this.ngControl = ngControl;
+    this._parentFormGroup = _parentFormGroup;
+    this._parentForm = _parentForm;
+    this._stateChanges = _stateChanges;
+    this.errorState = false;
+  }
+  /** Updates the error state based on the provided error state matcher. */
+  updateErrorState() {
+    const oldState = this.errorState;
+    const parent = this._parentFormGroup || this._parentForm;
+    const matcher = this.matcher || this._defaultMatcher;
+    const control = this.ngControl ? this.ngControl.control : null;
+    const newState = matcher?.isErrorState(control, parent) ?? false;
+    if (newState !== oldState) {
+      this.errorState = newState;
+      this._stateChanges.next();
+    }
+  }
+};
 var MAT_DATE_LOCALE = new InjectionToken("MAT_DATE_LOCALE", {
   providedIn: "root",
   factory: MAT_DATE_LOCALE_FACTORY
@@ -4480,12 +4546,18 @@ var _MatInternalFormField = __MatInternalFormField;
 
 export {
   coerceBooleanProperty,
+  coerceNumberProperty,
+  coerceElement,
   Platform,
+  getSupportedInputTypes,
+  normalizePassiveListenerOptions,
   ObserversModule,
   FocusMonitor,
   Directionality,
   MatCommonModule,
+  _ErrorStateTracker,
+  ErrorStateMatcher,
   MatRippleModule,
   MatRippleLoader
 };
-//# sourceMappingURL=chunk-2Q6VQI6W.js.map
+//# sourceMappingURL=chunk-4X55E54U.js.map
